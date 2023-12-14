@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>Login</title>
+</head>
+{% load widget_tweaks %}
+<body>
+    <section>
+        <img src="{% static 'img/loginBackground.jpg' %}" alt="" class="bg">
+
+        <div class="login">
+            <form method="post">
+                {% csrf_token %}
+                {% for key, value in form.errors.items %}
+                    {{value}}
+                {% endfor %}
+                <h2>Đăng nhập</h2>
+                <div class="inputBox">
+                    {% render_field form.username type="text" maxlength="100" placeholder="Tài khoản" %}
+                </div>
+                <div class="inputBox">
+                    {% render_field form.password type="password" maxlength="100" id="password" placeholder="Mật khẩu" %}
+                    <div class="show"></div>
+                </div>
+                <input type="hidden" name="next" value="/">
+                <div class="inputBox">
+                    <input type="submit" value="Đăng nhập" id="btn">
+                </div>
+                <div class="group">
+                    <a href="#">Quên mật khẩu?</a>
+                    <a href="{% url 'register' %}">Đăng ký</a>
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+    <script>
+        var pswd = document.getElementById("password")
+        let show = document.querySelector('.show')
+        show.onclick = function(){
+            if (pswd.type == 'password'){
+                pswd.setAttribute('type', 'text');
+                show.classList.add('hide');
+            }else {
+                pswd.setAttribute('type', 'password');
+                show.classList.remove('hide');
+            }
+        }
+    </script>
+</body>
+</html>

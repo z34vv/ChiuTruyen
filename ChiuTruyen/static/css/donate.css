@@ -1,0 +1,39 @@
+* {
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.dnh{
+    text-align: center;
+    margin-top: 57px;
+}
+
+.white-textHead{
+    text-align: center;
+    font-size: 20px;
+}
+
+.left-column {
+    width: 60%;
+    height: 200px;
+    float: left;
+    padding: 50px 200px;
+}
+
+.right-column {
+    width: 40%;
+    height: 200px;
+    float: right;
+}
+
+.left-from{
+    width: 20%;
+    float: left;
+    padding: 0 20px;
+    font-size: 24px;
+}
+
+.right-from{
+    width: 80%;
+    float: right;
+}

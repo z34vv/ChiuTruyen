@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo" style="display: hidden;">
+            <a href="/" class="logo-link"><img src="{% static 'images/logo.png' %}" alt="" class="logo-img"></a>
+        </div>
+        <div class="header-list">
+            <ul class="menu">
+                <li class="menu-item"><i class="fas fa-search header-icon"></i>Tìm kiếm</li>
+                <li class="menu-item">Sách Hot</li>
+                <li class="menu-item">Sách Mới Cập Nhật</li>
+                <li class="menu-item">FAQ</li>
+                <li class="menu-item">
+                    <a href="/user" style="text-decoration: none; color: #fff;">Tài khoản </a>
+                </li>
+                {% if user.is_superuser %}
+                <li class="menu-item">
+                    <a href="/admin" style="text-decoration: none; color: #fff;">Admin </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+
+        {% if user.username %}
+            <a href="{% url 'logout' %}" class="login-user">
+                <div class="login">Đăng xuất</div>
+            </a>
+        {% endif %}
+
+
+    </header>
+
+    {% block content %} {% endblock %}
+
+    <div class="footer-banner">
+        <div class="footer">
+            <div class="footer-heading">Sách chất lượng cao online của
+                <a href="/" class="footer-color footer-link-hover">ChiuTruyen</a>khác gì so với các trang sách khác?</div>
+            <div class="footer-content">
+                <ul class="footer-menu">
+                    <li class="footer-menu-item">Là phim bluray (reencoded), có độ phân giải thấp nhất là Full HD (1080p), trong khi hầu hết các trang phim khác chỉ có tới độ phân giải HD (720p) là cao nhất</li>
+                    <li class="footer-menu-item">Chất lượng cao, lượng dữ liệu trên giây (bitrate) gấp từ 5 - 10 lần phim online thông thường - đây là yếu tố quyết định độ nét của phim (thậm chí còn quan trọng hơn độ phân giải)</li>
+                    <li class="footer-menu-item">Âm thanh 5.1 (6 channel) thay vì stereo (2 channel) như các trang phim khác (kể cả Youtube)</li>
+                    <li class="footer-menu-item">Phù hợp để xem trên màn hình TV, máy tính, laptop có độ phân giải cao</li>
+                </ul>
+            </div>
+            <div class="footer-bot">
+                <div class="footer-btn"><a href="#" class="footer-link footer-link-hover">Liên hệ</a></div>
+                <div class="footer-btn2"><a href="https://www.facebook.com/chiuphim" target="_blank" class="footer-link footer-link-btn"><i class="fab fa-facebook"></i>ChiuTruyen</a></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop()) {
+                    $('header').addClass('sticky');
+                } else {
+                    $('header').removeClass('sticky');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
