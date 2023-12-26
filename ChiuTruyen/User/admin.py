@@ -7,6 +7,7 @@ from Book.models import Book
 class CustomUserAmin(admin.ModelAdmin):
     list_display = [
         'username',
+        'email',
         'wallet',
         'created_at'
     ]

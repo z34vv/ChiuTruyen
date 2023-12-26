@@ -3,129 +3,76 @@
 
 {% load static %}
 
-{% block title %}
-Chill những siêu phẩm bom tấn
-{% endblock %}
-
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}">
-<div class="container">
-    <div class="taskbar">
-        <div class="taskbar-menu">
-            <div class="taskbar-item">
-                <div class="taskbar-item-heading">Thể loại:</div>
-                <div class="taskbar-control">
-                    <select name="" id="" class="taskbar-select">
-                        <option value="" class="taskbar-option">- Tất cả -</option>
-                        <option value="" class="taskbar-option">Hành động</option>
-                        <option value="" class="taskbar-option">Phiêu lưu</option>
-                        <option value="" class="taskbar-option">Bí ẩn</option>
-                        <option value="1" class="taskbar-option">
-                            <a href="/1">Kinh dị</a>
-                        </option>
-                        <option value="" class="taskbar-option">Giật gân</option>
-                        <option value="" class="taskbar-option">Tài liệu</option>
-                        <option value="" class="taskbar-option">Gia đình</option>
-                        <option value="" class="taskbar-option">Chiến tranh</option>
-                        <option value="" class="taskbar-option">Tội phạm</option>
-                        <option value="" class="taskbar-option">Cổ trang</option>
-                        <option value="" class="taskbar-option">Kiếm hiệp</option>
-                        <option value="" class="taskbar-option">Lãng mạn</option>
-                    </select>
-                </div>
-            </div>
-            <div class="taskbar-item">
-                <div class="taskbar-item-heading">Quốc gia:</div>
-                <div class="taskbar-control">
-                    <select name="" id="" class="taskbar-select">
-                        <option value="" class="taskbar-option">- Tất cả -</option>
-                        <option value="" class="taskbar-option">Mỹ</option>
-                        <option value="" class="taskbar-option">Hàn quốc</option>
-                        <option value="" class="taskbar-option">Canada</option>
-                        <option value="" class="taskbar-option">Trung Quốc</option>
-                        <option value="" class="taskbar-option">Nhật Bản</option>
-                        <option value="" class="taskbar-option">Anh</option>
-                        <option value="" class="taskbar-option">Pháp</option>
-                        <option value="" class="taskbar-option">Việt Nam</option>
-                        <option value="" class="taskbar-option">Thụy Điển</option>
-                    </select>
-                </div>
-            </div>
-            <div class="taskbar-item">
-                <div class="taskbar-item-heading">Năm:</div>
-                <div class="taskbar-control">
-                    <select name="" id="" class="taskbar-select">
-                        <option value="" class="taskbar-option">- Tất cả -</option>
-                        <option value="" class="taskbar-option">2023</option>
-                        <option value="" class="taskbar-option">2022</option>
-                        <option value="" class="taskbar-option">2021</option>
-                        <option value="" class="taskbar-option">2020</option>
-                        <option value="" class="taskbar-option">2019</option>
-                        <option value="" class="taskbar-option">2018</option>
-                        <option value="" class="taskbar-option">2017</option>
-                        <option value="" class="taskbar-option">2016</option>
-                        <option value="" class="taskbar-option">2015</option>
-                        <option value="" class="taskbar-option">Trước 2015</option>
-                    </select>
-                </div>
-            </div>
-            <div class="taskbar-item">
-                <div class="taskbar-item-heading">Trạng thái:</div>
-                <div class="taskbar-control">
-                    <select name="" id="" class="taskbar-select">
-                        <option value="" class="taskbar-option">- Tất cả -</option>
-                        <option value="" class="taskbar-option">Đang ra</option>
-                        <option value="" class="taskbar-option">Đã hoàn tất</option>
-                        <option value="" class="taskbar-option">Ngừng ra</option>
-                        <option value="" class="taskbar-option">Sắp ra</option>
-                    </select>
-                </div>
+<div id="glo_contents">
+    <div class="section_todayup block-hot">
+        <h2>Truyện đề cử</h2>
+        <div class="list_wrap">
+            <div class="hot">
+                <ul class="media-scroller">
+
+                    <li>
+                        <div class="item">
+                            <div class="visual">
+                                <div class="comic-thumb">
+                                    <a href="#" title="Tết ở làng địa ngục">
+                                        <img src="{% static 'img/TetOLangDiaNguc.jpg' %}"
+                                             alt="Tết ở làng địa ngục"
+                                             data-original="https://media.comics24hto.com/images/fullsize/2023/09/07/TetOLangDiaNguc.jpg"
+                                             class="lazy"/>
+                                    </a>
+                                </div>
+                                <div class="main_text">
+                                    <h3 class="title"><a href="#">Tết ở làng địa ngục</a></h3>
+                                </div>
+                                <div class="section_other">
+                                    <div class="ico_box">
+                                        <p class="ico_19plus">18+</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+
+                </ul>
             </div>
         </div>
     </div>
-    <div class="container-flex">
-        <div class="content">
-            {% for book in Books %}
-                <div class="content-item">
-                    <a href="movie/{{ post.dateEncode }}" class="content-link"></a>
-                    <img src="{{ MEDIA_URL }}/media/{{book.avatar}}" alt="" class="content-item-img">
-                    <div class="content-item-item">
-                        <div class="content-item-name">{{book.name}}</div>
-                        <div class="content-item-text">{{book.price}}</div>
-                        <a class="buyButton">Đọc</a>
-                        <a href="buy-book/{{book.id}}" class="buyButton" data-target="#exampleModal">Mua</a>
+    <div class="section_todayup">
+        <h2>Truyện mới cập nhật</h2>
+        <div class="list_wrap">
+            <ul class="slick_item">
+                {% for book in Books %}
+                <li>
+                    <div class="item">
+                        <div class="visual">
+                            <div class="comic-thumb">
+                                <a href="book/{{book.id}}" title="{{book.name}}">
+                                    <img src="{{ MEDIA_URL }}/media/{{book.avatar}}" alt="{{book.name}}"
+                                         data-original="https://stcdn.comics24hto.com/images/thumbs/nguoi-dep-va-quai-thu.jpg"
+                                         class="lazy"/>
+                                </a>
+                            </div>
+                            <div class="main_text">
+                                <h3 class="title"><a href="book/{{book.id}}"></a>{{book.name}}</h3>
+                                <p class="chapter">
+                                    <a href="#"
+                                       title="Chapter 132.2"
+                                       class="type01">Chapter 132.2 </a> <span>14 phút trước</span>
+                                </p>
+                            </div>
+                            <div class="section_other">
+                                <div class="ico_box">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="clearfix"></div>
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Mua sách</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Bạn có chắc chắn muốn mua quân sách này
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-        <button type="button" class="btn btn-primary">Xác nhận</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-{% if messages %}
-    <script>
-        {% for message in messages %}
-            alert("{{ message }}");
-        {% endfor %}
-    </script>
-{% endif %}
 {% endblock %}

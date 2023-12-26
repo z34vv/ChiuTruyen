@@ -20,7 +20,7 @@ class Category(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=255)
-    authors = models.ManyToManyField(Author)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
     categories = models.ManyToManyField(Category)
     alias = models.CharField(max_length=255, null=True, blank=True)
     view = models.BigIntegerField(default=0)
@@ -34,6 +34,7 @@ class Book(models.Model):
     avatar = models.ImageField()
     des = models.TextField(null=True, blank=True)
     price = models.FloatField(default=0)
+    bought_user = models.TextField(default='@')
     keyword = models.CharField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)
@@ -48,8 +49,10 @@ class Book(models.Model):
 
 
 class Chapter(models.Model):
+    number = models.IntegerField()
     name = models.CharField(max_length=255, null=True, blank=True)
-    content = models.TextField(max_length=255)
+    view = models.BigIntegerField(default=0)
+    bought_user = models.TextField(default='@')
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(null=True, blank=True)
     deleted = models.DateTimeField(null=True, blank=True)
@@ -60,12 +63,17 @@ class Chapter(models.Model):
         db_table = 'Chapters'
 
     def __str__(self):
-        return self.name
+        return self.book.name + ': ' + self.name
 
 
-class Pages(models.Model):
+class Page(models.Model):
     image = models.ImageField()
+    content = models.TextField(max_length=255, null=True, blank=True)
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
+    object = models.Manager()
+
+    class Meta:
+        db_table = 'Pages'
 
 
 class Comment(models.Model):

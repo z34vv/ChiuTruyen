@@ -9,7 +9,7 @@ Chill những siêu phẩm bom tấn
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+<!--<link rel="stylesheet" href="{% static 'css/animate.css' %}">-->
 <link rel="stylesheet" href="{% static 'css/meanmenu.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
 <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
@@ -31,8 +31,7 @@ Chill những siêu phẩm bom tấn
 <script src="{% static 'js/waypoints.min.js' %}"></script>
 <script src="{% static 'js/plugins.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
-<div style="height: 75px; background-color: #000; margin-bottom: 24px;"></div>
-<div class="my-account-wrapper mb-70">
+<div class="my-account-wrapper mb-70" >
     <div class="container">
         <div class="section-bg-color">
             <div class="row">
@@ -45,10 +44,9 @@ Chill những siêu phẩm bom tấn
                                 <div class="myaccount-tab-menu nav" role="tablist">
                                     <a href="#orders" data-bs-toggle="tab"><i class="fa fa-cart-arrow-down"></i>
                                         Orders</a>
-                                    <a href="#address-edit" data-bs-toggle="tab"><i class="fa fa-map-marker"></i>
-                                        Địa chỉ</a>
                                     <a href="#account-info" data-bs-toggle="tab"><i class="fa fa-user"></i> Chi tiết tài khoản</a>
-                                    <a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Nạp tiền</a>
+                                    <a href="#address-edit" data-bs-toggle="tab"><ion-icon name="cash-outline"></ion-icon>
+                                        Nạp Tiền và Mua Vip</a>
                                     <a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Đăng xuất</a>
                                 </div>
                             </div>
@@ -61,27 +59,37 @@ Chill những siêu phẩm bom tấn
                                     <!-- Single Tab Content Start -->
                                     <div class="tab-pane fade show active" id="orders" role="tabpanel">
                                         <div class="myaccount-content">
-                                            <h5>Orders</h5>
+                                            <h5>Đã mua</h5>
                                             <div class="myaccount-table table-responsive text-center">
                                                 <table class="table table-bordered">
                                                     <thead class="thead-light">
                                                     <tr>
                                                         <th>ID</th>
-                                                        <th>Name</th>
-                                                        <th>Status</th>
-                                                        <th>Price</th>
-                                                        <th>Action</th>
+                                                        <th>Tên sách</th>
+                                                        <th>Trạng thái</th>
+                                                        <th>Giá</th>
+                                                        <th></th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
+                                                    {% for book in BoughtBooks %}
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Tết ở làng địa ngục</td>
+                                                        <td>{{book.id}}</td>
+                                                        <td>{{book.name}}</td>
+                                                        {% if book.status == 0 %}
+                                                        <td>Updating</td>
+                                                        {% elif book.status == 1 %}
                                                         <td>Finished</td>
-                                                        <td>0</td>
-                                                        <td><a href="cart.html" class="btn btn-sqr">View</a>
+                                                        {% elif book.status == 2 %}
+                                                        <td>Dropped</td>
+                                                        {% else %}
+                                                        <td>Coming Soon</td>
+                                                        {% endif %}
+                                                        <td>{{book.price}}</td>
+                                                        <td><a href="{% url 'book' book.id %}" class="btn btn-sqr">Đọc</a>
                                                         </td>
                                                     </tr>
+                                                    {% endfor %}
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -90,77 +98,114 @@ Chill những siêu phẩm bom tấn
                                     <!-- Single Tab Content End -->
 
                                     <!-- Single Tab Content Start -->
+                                    <div class="tab-pane fade" id="account-info" role="tabpanel">
+                                        <div class="myaccount-content">
+                                            <h5>Chi tiết tài khoản</h5>
+                                            <address>
+                                                <p><strong>{{user.username}}</strong></p>
+                                                <p><strong>Số dư: {{user.wallet}}</strong></p>
+                                                {% if user.vip_end_duration %}
+                                                <p><strong>Thời hạn Vip:</strong> {{user.vip_end_duration|date:"H:i d-m-Y"}}</p>
+                                                {% else %}
+                                                <p><strong>Vip:</strong> Không</p>
+                                                {% endif %}
+                                            </address>
+                                        </div>
+                                    </div> <!-- Single Tab Content End -->
+
+                                    <!-- Single Tab Content Start -->
                                     <div class="tab-pane fade" id="address-edit" role="tabpanel">
                                         <div class="myaccount-content">
-                                            <h5>Address</h5>
-                                            <address>
-                                                <p><strong>User name</strong></p>
-                                                <p> Address !! Address !! </p>
-                                            </address>
-                                            <a href="#" class="btn btn-sqr"><i class="fa fa-edit"></i>
-                                                Edit Address</a>
+                                            <h5>Mua Vip</h5>
+                                            <p><strong>Sau khi mua Vip bạn sẽ được giảm 5% khi mua sách và mua Chương sách!</strong></p>
+                                            <div class="myaccount-table table-responsive text-center">
+                                                <table class="table table-bordered">
+                                                    <thead class="thead-light">
+                                                    <tr>
+                                                        <th>Gói</th>
+                                                        <th>Tên gói</th>
+                                                        <th>Giá</th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>1 Tháng</td>
+                                                        <td>49K</td>
+                                                        <td>
+                                                            <form method="post" action="{% url 'buy-vip' %}">
+                                                                {% csrf_token %}
+                                                                {% for key, value in form.errors.items %}
+                                                                {{value}}
+                                                                {% endfor %}
+                                                                <input type="number" name="months" value="1"
+                                                                       style="display: none">
+                                                                <input type="submit" value="Mua"
+                                                                style="margin: 8px 8px -16px; background-color: #000; color: #fff; font-size:14; width: 90px; height: 30px; border-radius: 8px">
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>3 Tháng</td>
+                                                        <td>149K</td>
+                                                        <td>
+                                                            <form method="post" action="{% url 'buy-vip' %}">
+                                                                {% csrf_token %}
+                                                                {% for key, value in form.errors.items %}
+                                                                {{value}}
+                                                                {% endfor %}
+                                                                <input type="number" name="months" value="3"
+                                                                       style="display: none">
+                                                                <input type="submit" value="Mua"
+                                                                style="margin: 8px 8px -16px; background-color: #000; color: #fff; font-size:14; width: 90px; height: 30px; border-radius: 8px">
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>6 tháng</td>
+                                                        <td>299K</td>
+                                                        <td>
+                                                            <form method="post" action="{% url 'buy-vip' %}">
+                                                                {% csrf_token %}
+                                                                {% for key, value in form.errors.items %}
+                                                                {{value}}
+                                                                {% endfor %}
+                                                                <input type="number" name="months" value="6"
+                                                                       style="display: none">
+                                                                <input type="submit" value="Mua"
+                                                                style="margin: 8px 8px -16px; background-color: #000; color: #fff; font-size:14; width: 90px; height: 30px; border-radius: 8px">
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>1 năm</td>
+                                                        <td>499K</td>
+                                                        <td>
+                                                            <form method="post" action="{% url 'buy-vip' %}">
+                                                                {% csrf_token %}
+                                                                {% for key, value in form.errors.items %}
+                                                                {{value}}
+                                                                {% endfor %}
+                                                                <input type="number" name="months" value="12"
+                                                                       style="display: none">
+                                                                <input type="submit" value="Mua"
+                                                                style="margin: 8px 8px -16px; background-color: #000; color: #fff; font-size:14; width: 90px; height: 30px; border-radius: 8px">
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
                                     <!-- Single Tab Content End -->
 
-                                    <!-- Single Tab Content Start -->
-                                    <div class="tab-pane fade" id="account-info" role="tabpanel">
-                                        <div class="myaccount-content">
-                                            <h5>Account Details</h5>
-                                            <div class="account-details-form">
-                                                <form action="#">
-                                                    <div class="row">
 
-                                                        <div class="single-input-item">
-                                                            <label for="full-name" class="required">Full
-                                                                Name</label>
-                                                            <input type="text" id="full-name" placeholder="First Name"/>
-
-                                                        </div>
-                                                        <div class="single-input-item">
-                                                            <label for="display-name" class="required">Display
-                                                                Name</label>
-                                                            <input type="text" id="display-name"
-                                                                   placeholder="Display Name"/>
-                                                        </div>
-                                                        <div class="single-input-item">
-                                                            <label for="email" class="required">Email Addres</label>
-                                                            <input type="email" id="email" placeholder="Email Address"/>
-                                                        </div>
-                                                        <fieldset>
-                                                            <legend>Password change</legend>
-                                                            <div class="single-input-item">
-                                                                <label for="current-pwd" class="required">Current
-                                                                    Password</label>
-                                                                <input type="password" id="current-pwd"
-                                                                       placeholder="Current Password"/>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-lg-6">
-                                                                    <div class="single-input-item">
-                                                                        <label for="new-pwd" class="required">New
-                                                                            Password</label>
-                                                                        <input type="password" id="new-pwd"
-                                                                               placeholder="New Password"/>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-6">
-                                                                    <div class="single-input-item">
-                                                                        <label for="confirm-pwd" class="required">Confirm
-                                                                            Password</label>
-                                                                        <input type="password" id="confirm-pwd"
-                                                                               placeholder="Confirm Password"/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </fieldset>
-                                                        <div class="single-input-item">
-                                                            <button class="btn btn-sqr">Save Changes</button>
-                                                        </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div> <!-- Single Tab Content End -->
                                 </div>
                             </div> <!-- My Account Tab Content End -->
                         </div>

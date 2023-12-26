@@ -3,6 +3,7 @@ from django.views import View
 from django.contrib.auth import login
 from .forms import RegisterForm
 from .models import CustomUser
+from Book.models import Book
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -12,9 +13,13 @@ class UserView(LoginRequiredMixin, View):
 
     def get(self, request):
         user = request.user
-        # bought_book = CustomUser.objects.bought_book.split('@')
-        # data = {'Books': Book.object.filter().order_by('-created_at')}
-        return render(request, 'user.html')
+        bought_book_ids = user.bought_book.split('@')[1:-1]
+        bought_book_list = []
+        for id in bought_book_ids:
+            bought_book_list.append(Book.object.get(id=int(id)))
+        bought_book_list = sorted(bought_book_list, key=lambda x: x.name)
+        data = {'BoughtBooks': bought_book_list}
+        return render(request, 'user.html', data)
 
 
 def register(request):

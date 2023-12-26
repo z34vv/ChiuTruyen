@@ -1,80 +1,285 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="vi">
+
 <head>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChiuTruyen</title>
+    <link rel="stylesheet" href="{% static 'css/style1e02.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/icons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/icons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/icons/favicon-16x16.png' %}">
 </head>
 
 <body>
-    <header>
-        <div class="logo" style="display: hidden;">
-            <a href="/" class="logo-link"><img src="{% static 'images/logo.png' %}" alt="" class="logo-img"></a>
+<div id="glo_wrapper">
+    <header id="glo_header">
+        <div class="header-mobile">
+            <div class="top_header01">
+                <button class="side_menu btn-menu">
+                    menu
+                </button>
+                <div class="logo">
+                    <a href="truyen-tranh.html" class="brand"><img
+                            src="{% static 'img/logo-comics24h.png' %}"
+                            alt="Comics24h" width="160" height="30"></a>
+                </div>
+                <button type="button" class="side_search">search</button>
+            </div>
+            <div class="top_header02">
+                <div class="lnb">
+                    <ul>
+                        <li><a href="https://hh3dvietsub.com/" target="_blank" rel="nofollow" title="Anime">HH3D</a>
+                        </li>
+                        <li><a href="the-loai-manhwa.html" title="Manhwa">Manhwa</a></li>
+                        <li><a href="the-loai-manhua.html" title="Manhua">Manhua</a></li>
+                        <li><a href="the-loai-manga.html" title="Manga">Manga</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="header-list">
-            <ul class="menu">
-                <li class="menu-item"><i class="fas fa-search header-icon"></i>Tìm kiếm</li>
-                <li class="menu-item">Sách Hot</li>
-                <li class="menu-item">Sách Mới Cập Nhật</li>
-                <li class="menu-item">FAQ</li>
-                <li class="menu-item">
-                    <a href="/user" style="text-decoration: none; color: #fff;">Tài khoản </a>
-                </li>
-                {% if user.is_superuser %}
-                <li class="menu-item">
-                    <a href="/admin" style="text-decoration: none; color: #fff;">Admin </a>
-                </li>
+        <div class="glo_header_wrap">
+            <div class="glo_header_left">
+                <a href="{% url 'home' %}" class="header-logo">
+                    <img src="{% static 'img/logo-comics24h.png' %}" alt="Comics24h">
+                </a>
+
+                <div id="glo_gnb" class="navbar-menu">
+                    <ul>
+                        <li>
+                            <a href="index.html" target="_self">Danh sách <span class="caret"></span></a>
+                            <ul class="sub-menu sub-menu-list">
+                                <li>
+                                    <a class="navbar-menu-item" href="danh-sach-truyen-tranh-moi.html">Truyện mới</a>
+                                </li>
+                                <li>
+                                    <a class="navbar-menu-item" href="danh-sach-truyen-tranh-hot.html">Truyện Hot </a>
+                                </li>
+                                <li>
+                                    <a class="navbar-menu-item" href="manhwa-18.html">Manhwa 18+</a>
+                                </li>
+                                </li>
+                                <li>
+                                    <a class="navbar-menu-item" href="danh-sach-ngon-tinh-full.html">Ngôn tình Full </a>
+                                </li>
+                                <li>
+                                    <a class="navbar-menu-item" href="danh-sach-ngon-tinh-trung-quoc.html">Ngôn tình
+                                        Trung Quốc </a>
+                                </li>
+                                <li>
+                                    <a class="navbar-menu-item" href="danh-sach-ngon-tinh-co-dai.html">Ngôn tình cổ
+                                        đại </a>
+                                </li>
+                                <li>
+                                    <a class="navbar-menu-item" href="danh-sach-ngon-tinh-xuyen-khong.html">Ngôn tình
+                                        xuyên không </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="index.html" target="_self">Thể loại <span class="caret"></span></a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a class="navbar-menu-item cathot" href="danh-sach-truyen.html">Tất cả</a>
+                                </li>
+                                <li><a class="navbar-menu-item" href="#"> Action</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Adult</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Adventure</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Chuyển sinh</a></li>
+                                <li><a class="navbar-menu-item cathot" href="#"> Cổ đại</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Comedy</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Drama</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Ecchi</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Fantasy</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Game</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Gender Bender</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Harem</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Historical</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Horror</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Huyền Huyễn</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Magic</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Manga</a></li>
+                                <li><a class="navbar-menu-item cathot" href="#"> Manhua</a></li>
+                                <li><a class="navbar-menu-item cathot" href="#"> Manhwa</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Martial Arts</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Mature</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Mystery</a></li>
+                                <li><a class="navbar-menu-item cathot" href="#"> Ngôn Tình</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Oneshot</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Psychological</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Romance</a></li>
+                                <li><a class="navbar-menu-item" href="#"> School life</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Sci-fi</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Seinen</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Shoujo</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Shoujo ai</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Shounen</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Shounen ai</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Slice Of Life</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Smut</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Soft Yaoi</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Soft Yuri</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Sports</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Supernatural</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Tiên Hiệp</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Tragedy</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Trinh Thám</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Truyện Màu</a></li>
+                                <li><a class="navbar-menu-item cathot" href="#"> Truyện tranh 18+</a></li>
+                                <li><a class="navbar-menu-item cathot" href="#"> Webtoon</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Xuyên Không</a></li>
+                                <li><a class="navbar-menu-item cathot" href="#"> Yaoi</a></li>
+                                <li><a class="navbar-menu-item" href="#"> Đô Thị</a></li>
+                            </ul>
+                        </li>
+                        <!-- <li>
+                          <a href="lich-su-doc-truyen.html" target="_self">Lịch sử</a>
+                        </li> -->
+                        {% if user.username %}
+                        <li class="menu-item">
+                            <a href="/user" style="text-decoration: none; color: #fff;">Tài khoản </a>
+                        </li>
+                        {% endif %}
+                        {% if user.is_superuser %}
+                        <li class="menu-item">
+                            <a href="/admin" style="text-decoration: none; color: #fff;">Admin </a>
+                        </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="glo_header_right">
+                <div class="section_search">
+                    <form method="get" action="" name="search_form" id="search_frm"
+                          class="form-srch">
+                        <fieldset>
+                            <legend>Tìm kiếm truyện</legend>
+                            <input type="search" name="keyword" id="srch-val" class="top_search"
+                                   placeholder="Tìm kiếm truyện"
+                                   autocomplete="off">
+                            <input type="submit" class="btn_search">
+                        </fieldset>
+                    </form>
+                    <div id="search-result" class="search-result hide">
+                    </div>
+                </div>
+                {% if user.username %}
+                <a href="{% url 'logout' %}">
+                    <div class="login">Đăng xuất</div>
+                </a>
                 {% endif %}
-            </ul>
+            </div>
         </div>
-
-        {% if user.username %}
-            <a href="{% url 'logout' %}" class="login-user">
-                <div class="login">Đăng xuất</div>
-            </a>
-        {% endif %}
-
-
-    </header>
-
-    {% block content %} {% endblock %}
-
-    <div class="footer-banner">
-        <div class="footer">
-            <div class="footer-heading">Sách chất lượng cao online của
-                <a href="/" class="footer-color footer-link-hover">ChiuTruyen</a>khác gì so với các trang sách khác?</div>
-            <div class="footer-content">
-                <ul class="footer-menu">
-                    <li class="footer-menu-item">Là phim bluray (reencoded), có độ phân giải thấp nhất là Full HD (1080p), trong khi hầu hết các trang phim khác chỉ có tới độ phân giải HD (720p) là cao nhất</li>
-                    <li class="footer-menu-item">Chất lượng cao, lượng dữ liệu trên giây (bitrate) gấp từ 5 - 10 lần phim online thông thường - đây là yếu tố quyết định độ nét của phim (thậm chí còn quan trọng hơn độ phân giải)</li>
-                    <li class="footer-menu-item">Âm thanh 5.1 (6 channel) thay vì stereo (2 channel) như các trang phim khác (kể cả Youtube)</li>
-                    <li class="footer-menu-item">Phù hợp để xem trên màn hình TV, máy tính, laptop có độ phân giải cao</li>
+        <div class="fun_search" id="fun_search">
+            <div class="box-input">
+                <input id="txtSearch" type="text" class="i-search" placeholder="Nhập tên truyện">
+            </div>
+            <div id="result-manga" class="result-manga hide"></div>
+            <button id="btn-mbsearch" class="b-search" aria-label="Tìm truyện"></button>
+            <button class="btn-txt-cancel-search" aria-label="Hủy tìm truyện" rel="nofollow"><span
+                    class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        </div>
+        <nav id="gnb" class="gnb menu-close ">
+            <div class="gnb-header">
+                <div class="gnb-header-1">
+                    <img src="{% static 'img/logo-comics24h.png' %}" width="160" height="30"
+                         alt="comics24h"
+                         class="gnb-logo">
+                    <p> Đọc truyện tranh online miễn phí</p>
+                    <div class="clear"></div>
+                </div>
+                <button class="btn btn-menu-close" aria-label="Đóng menu">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="gnb-body ">
+                <ul>
+                    <li>
+                        <a href="lich-su-doc-truyen.html">
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                            <span class="text-red"> Lịch sử đọc truyện</span>
+                        </a>
+                    </li>
+                    <!-- <li class="divider"></li> -->
+                    <li>
+                        <div class="menu-li">
+                            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                            Thể loại
+                        </div>
+                    </li>
                 </ul>
             </div>
-            <div class="footer-bot">
-                <div class="footer-btn"><a href="#" class="footer-link footer-link-hover">Liên hệ</a></div>
-                <div class="footer-btn2"><a href="https://www.facebook.com/chiuphim" target="_blank" class="footer-link footer-link-btn"><i class="fab fa-facebook"></i>ChiuTruyen</a></div>
+        </nav>
+        <div class="gnb-back"></div>
+        <div class="clear"></div>
+    </header>
+    {% block content %} {% endblock %}
+    <footer>
+        <div class="footer-content">
+            <div class="inner p-relative">
+                <div class="footer-links">
+                    <ul class="ulclear">
+                        <li><a href="index.html" title="Trang chủ">Trang chủ</a></li>
+                        <li><a href="trang/chinh-sach-bao-mat.html" title="Chính sách bảo mật">Chính sách bảo mật</a>
+                        </li>
+                        <li><a href="trang/lien-he.html" title="Liên hệ">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="tag-footer">
+                    <a href="#">truyện tranh</a>
+                    <a href="#">truyen tranh</a>
+                    <a href="#">truyện tranh online</a>
+                    <a href="#">truyen tranh online</a>
+                    <a href="#">đọc truyện tranh</a>
+                    <a href="#">doc truyen tranh</a>
+                    <a href="#">truyện tranh hay</a>
+                    <a href="#">truyện tranh hot</a>
+                    <a href="#">truyen net</a>
+                    <a href="#">truyện tranh ngôn tình</a>
+                    <a href="#">BL manhwa</a>
+                    <a href="#">manhwa 18+</a>
+                    <a href="#">manhua</a>
+                    <a href="#">ngôn tình trung quốc</a>
+                    <a href="#">truyện tranh 18+</a>
+                    <a href="#">truyen tranh 18</a>
+                    <a href="#">truyenqq</a>
+                    <a href="#">mi2manga</a>
+                    <a href="#">doctruyen3q</a>
+                    <a href="#">toptruyen</a>
+                    <a href="#">cmanga</a>
+                    <a href="#">vlogtruyen</a>
+                    <a href="#">blogtruyen</a>
+                    <a href="#">truyentranhaudio</a>
+                    <a href="#">vcomi</a>
+                    <a href="#">khotruyentranh</a>
+                    <a href="#">hacomics</a>
+                </div>
+                <div class="footer-bottom-text">
+                    <p>
+                        Trải nghiệm thế giới truyện tranh hoàn toàn miễn phí. Mọi thông tin và hình ảnh trên website đều
+                        được sưu
+                        tầm trên Internet, chúng tôi không sở hữu hay chịu trách nhiệm bất kỳ thông tin nào trên web
+                        này. Nếu làm
+                        ảnh hưởng đến cá nhân hay tổ chức nào, khi được yêu cầu, chúng tôi sẽ xem xét và gỡ bỏ ngay lập
+                        tức.
+                    </p>
+                    <p>Liên hệ: <a href="#" class="__cf_email__">quanghuyndvc@gmail.com</a></p>
+                    <p>Copyright © 2023 Divi Platforms, Inc.</p>
+                </div>
             </div>
         </div>
-    </div>
+    </footer>
 
+    <!-- <div id="scrollup" class="scrollup" style="display: inline;"><span class="glyphicon glyphicon-arrow-up"></span>
+    </div> -->
 
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(window).scroll(function() {
-                if ($(this).scrollTop()) {
-                    $('header').addClass('sticky');
-                } else {
-                    $('header').removeClass('sticky');
-                }
-            });
-        });
-    </script>
+</div>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

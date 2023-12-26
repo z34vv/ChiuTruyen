@@ -4,11 +4,11 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
-    nickname = models.CharField(max_length=50)
+    nickname = models.CharField(max_length=50, null=True, blank=True)
     wallet = models.FloatField(default=0)
-    paycheck = models.IntegerField(default=0, null=True, blank=True)
+    vip_end_duration = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=255, null=True, blank=True)
-    bought_book = models.TextField(default='')
+    bought_book = models.TextField(default='@')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
@@ -35,4 +35,4 @@ class Author(models.Model):
         db_table = 'Authors'
 
     def __str__(self):
-        return 'stage_name'
+        return self.stage_name

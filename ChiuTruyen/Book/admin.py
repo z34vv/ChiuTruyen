@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Book, Chapter, Comment
+from .models import Category, Book, Chapter, Page, Comment
 # Register your models here.
 
 
@@ -13,16 +13,12 @@ class CategoryAdmin(admin.ModelAdmin):
 class BookAdmin(admin.ModelAdmin):
     list_display = [
         'name',
-        'display_authors',
+        'author',
         'display_categories',
         'status',
         'price',
         'created_at'
     ]
-
-    def display_authors(self, obj):
-        return ', '.join([author.stage_name for author in obj.authors.all()])
-    display_authors.short_description = 'Authors'
 
     def display_categories(self, obj):
         return ', '.join([category.name for category in obj.categories.all()])
@@ -37,6 +33,12 @@ class ChapterAmin(admin.ModelAdmin):
     ]
 
 
+class PageAdmin(admin.ModelAdmin):
+    list_display = [
+        'chapter'
+    ]
+
+
 class CommentAdmin(admin.ModelAdmin):
     list_display = [
         'user',
@@ -48,4 +50,5 @@ class CommentAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Chapter, ChapterAmin)
+admin.site.register(Page, PageAdmin)
 admin.site.register(Comment, CommentAdmin)
