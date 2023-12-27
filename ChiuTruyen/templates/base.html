@@ -154,14 +154,14 @@
             </div>
             <div class="glo_header_right">
                 <div class="section_search">
-                    <form method="get" action="" name="search_form" id="search_frm"
+                    <form method="get" action="{% url 'search' %}" id="search_frm"
                           class="form-srch">
                         <fieldset>
                             <legend>Tìm kiếm truyện</legend>
-                            <input type="search" name="keyword" id="srch-val" class="top_search"
+                            <input type="search" name="query" id="srch-val" class="top_search"
                                    placeholder="Tìm kiếm truyện"
                                    autocomplete="off">
-                            <input type="submit" class="btn_search">
+                            <input type="submit" class="" value="tìm">
                         </fieldset>
                     </form>
                     <div id="search-result" class="search-result hide">

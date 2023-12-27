@@ -1,0 +1,66 @@
+<!--Home front-end code-->
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div id="glo_contents">
+    <div class="section_todayup block-hot">
+        <h2>Kết quả tìm kiếm cho từ khoá: {{query}}</h2>
+        <div class="list_wrap">
+            <div class="hot">
+                <ul class="media-scroller">
+                    {% for book in books_search_by_name %}
+                    <li>
+                        <div class="item">
+                            <div class="visual">
+                                <div class="comic-thumb">
+                                    <a href="{% url 'book' book.id %}" title="{{book.name}}">
+                                        <img src="{{MEDIA_URL }}/media/{{book.avatar}}"
+                                             alt="{{book.name}}"
+                                             data-original="https://media.comics24hto.com/images/fullsize/2023/09/07/TetOLangDiaNguc.jpg"
+                                             class="lazy"/>
+                                    </a>
+                                </div>
+                                <div class="main_text">
+                                    <h3 class="title"><a href="{% url 'book' book.id %}">{{book.name}}</a></h3>
+                                </div>
+                                <div class="section_other">
+                                    <div class="ico_box">
+                                        <p class="ico_19plus"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    {% for book in books_search_by_alias %}
+                    <li>
+                        <div class="item">
+                            <div class="visual">
+                                <div class="comic-thumb">
+                                    <a href="{% url 'book' book.id %}" title="{{book.name}}">
+                                        <img src="{{MEDIA_URL }}/media/{{book.avatar}}"
+                                             alt="{{book.name}}"
+                                             data-original="https://media.comics24hto.com/images/fullsize/2023/09/07/TetOLangDiaNguc.jpg"
+                                             class="lazy"/>
+                                    </a>
+                                </div>
+                                <div class="main_text">
+                                    <h3 class="title"><a href="{% url 'book' book.id %}">{{book.name}}</a></h3>
+                                </div>
+                                <div class="section_other">
+                                    <div class="ico_box">
+                                        <p class="ico_19plus"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

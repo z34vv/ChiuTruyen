@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'User',
     'Book',
     'Chapter',
+    'Search',
 ]
 
 MIDDLEWARE = [
